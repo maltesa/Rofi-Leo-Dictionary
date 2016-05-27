@@ -2,7 +2,6 @@
 require 'nokogiri'
 require 'open-uri'
 require 'uri'
-require 'byebug'
 
 ## extract entries from dictionary
 def extractEntries entries
@@ -37,7 +36,7 @@ end
 exit unless ARGV[0]
 
 # query
-doc = Nokogiri::XML(open(URI.encode("http://dict.leo.org/dictQuery/m-vocab/ende/query.xml?tolerMode=nof&lp=ende&lang=de&rmWords=off&rmSearch=on&search=#{ARGV[0]}&searchLoc=0&resultOrder=basic&multiwordShowSingle=on&sectLenMax=16&n=1&t=2016-05-26T18:05:46.990Z")))
+doc = Nokogiri::XML(open(URI.encode("http://dict.leo.org/dictQuery/m-vocab/ende/query.xml?tolerMode=nof&lp=ende&lang=de&rmWords=off&rmSearch=on&search=#{ARGV[0]}&resultOrder=basic&multiwordShowSingle=on&sectLenMax=16&n=1")))
 
 
 # extract translations
