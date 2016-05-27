@@ -13,8 +13,13 @@ else
 fi
 # rvm use default
 
+# load clipboard content (for translating highlighted text)
+input=`xclip -o`
+
 # Call menu
-input=$( echo "" | rofi -dmenu -l 30 -p "Leo Dict: " | awk '{print $1}' )
+if [[ -z "$input" ]]; then
+  input=$( echo "" | rofi -dmenu -l 30 -p "Leo Dict: " | awk '{print $1}' )
+fi
 
 # Call search script as long as there is input
 while [ -n "$input" ]; do
