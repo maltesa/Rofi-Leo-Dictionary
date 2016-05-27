@@ -1,7 +1,7 @@
 ![Screenshot](/rofi_example.png "Screenshot")
 
 # Installation and Usage
-- install rofi and ruby
+- install rofi, ruby and xclip
 - gem install nokogiri
 - chmod u+x ./leo_search*
 - run leo_search_rofi.sh
