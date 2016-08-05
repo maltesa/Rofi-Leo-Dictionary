@@ -77,6 +77,7 @@ end
 
 # get max lenght of word
 len_max = table.map{ |t| t.map{ |w| w.size rescue 0 } }.flatten.max
+len_max = [50, len_max].min # upper bound for tabs (max. possible width)
 
 # print result
 table.each do |t|
