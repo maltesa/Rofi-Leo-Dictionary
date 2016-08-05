@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+# path to search script
+RBPATH="/path/to/leo_search.rb"
+
 # load ruby rvm path
 # Load RVM into a shell session *as a function*
 if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
@@ -23,5 +26,5 @@ fi
 
 # Call search script as long as there is input
 while [ -n "$input" ]; do
-  input=$( ruby /home/malte/Skripte\ und\ Anwendungen/leo_search.rb $(echo $input) | rofi -dmenu -l 30 -p "Leo Dict: " | awk '{print $1}' )
+  input=$( ruby "$RBPATH" $(echo $input) | rofi -dmenu -l 30 -p "Leo Dict: " | awk '{print $1}' )
 done
