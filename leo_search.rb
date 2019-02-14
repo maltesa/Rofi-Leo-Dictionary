@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 require 'nokogiri'
 require 'open-uri'
 require 'uri'
@@ -33,7 +33,7 @@ end
 ## Main
 
 # stop if no argument is given
-exit unless ARGV[0]
+exit 0 unless ARGV[0]
 
 # query
 doc = Nokogiri::XML(open(URI.encode("http://dict.leo.org/dictQuery/m-vocab/ende/query.xml?tolerMode=nof&lp=ende&lang=de&rmWords=off&rmSearch=on&search=#{ARGV[0]}&resultOrder=basic&multiwordShowSingle=on&sectLenMax=16&n=1")))
@@ -49,10 +49,10 @@ sections = doc.css("sectionlist[sectionsort='bestPrio']").children
 
 # go through section
 sections.each do |section|
-  
+
   # get entries
   entries = section.css("entry")
-  
+
   # show section title if we have entries
   if entries.size > 0
     table.push ["--- #{section["sctTitle"]}", ""] rescue table.push ["---", ""]
@@ -77,7 +77,7 @@ end
 
 # get max lenght of word
 len_max = table.map{ |t| t.map{ |w| w.size rescue 0 } }.flatten.max
-len_max = [50, len_max].min # upper bound for tabs (max. possible width)
+len_max = [50, len_max.to_i].min # upper bound for tabs (max. possible width)
 
 # print result
 table.each do |t|
