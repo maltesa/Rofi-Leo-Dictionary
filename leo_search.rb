@@ -36,7 +36,9 @@ end
 exit 0 unless ARGV[0]
 
 # query
-doc = Nokogiri::XML(open(URI.encode("http://dict.leo.org/dictQuery/m-vocab/ende/query.xml?tolerMode=nof&lp=ende&lang=de&rmWords=off&rmSearch=on&search=#{ARGV[0]}&resultOrder=basic&multiwordShowSingle=on&sectLenMax=16&n=1")))
+query = URI.encode_www_form_component(ARGV[0])
+url = "http://dict.leo.org/dictQuery/m-vocab/ende/query.xml?tolerMode=nof&lp=ende&lang=de&rmWords=off&rmSearch=on&search=#{query}&resultOrder=basic&multiwordShowSingle=on&sectLenMax=16&n=1"
+doc = Nokogiri::XML(URI.open(url))
 
 
 # extract translations
